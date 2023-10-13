@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Contracts.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SuitableVtbBranches.Controllers
 {
@@ -7,17 +8,18 @@ namespace SuitableVtbBranches.Controllers
     [Route("api/department")]
     public class DepartmentController : ControllerBase
     {
+        private readonly IDepartmentService _departmentService;
+
+        public DepartmentController(IDepartmentService departmentService)
+        {
+            _departmentService = departmentService;
+        }
+
         [HttpGet("{id:Guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var department = new
-            {
-                Id = id,
-                Nname = "test",
-                Address = "test",
-            };
-
-            return Ok(department);
+            var dto = await _departmentService.GetById(id);
+            return Ok(dto);
         }
 
         [HttpGet]
