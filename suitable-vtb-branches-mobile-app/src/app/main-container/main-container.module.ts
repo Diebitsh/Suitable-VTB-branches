@@ -4,7 +4,6 @@ import { CommonModule } from "@angular/common";
 import { IonicModule } from "@ionic/angular";
 import { RouterModule } from "@angular/router";
 import { MapModule } from "./map/map.module";
-import { PreferredDepatmentsModule } from "./preferred-deparments/preferred-deparments.module";
 
 @NgModule({
     imports: [
@@ -16,11 +15,11 @@ import { PreferredDepatmentsModule } from "./preferred-deparments/preferred-depa
                 component: MainContainerComponent
             }
         ]),
-        MapModule,
-        PreferredDepatmentsModule
+        MapModule
     ],
     exports: [MainContainerComponent],
     declarations: [MainContainerComponent],
     providers: []
 })
+
 export class MainContainerModule {}

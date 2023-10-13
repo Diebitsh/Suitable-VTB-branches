@@ -16,7 +16,8 @@ export class MainContainerComponent {
         const modal = await this.modalCtrl.create({
             component: DepartmentCardComponent,
             breakpoints: [0, 0.3, 0.5, 0.8],
-            initialBreakpoint: 0.5
+            initialBreakpoint: 0.8,
+            cssClass: 'bottom-sheet',
         })
 
         await modal.present();
