@@ -1,3 +1,6 @@
+import { Injectable } from "@angular/core";
+
+@Injectable({providedIn: 'any'})
 export abstract class BaseHttpService {
     abstract apiPath: string;
 

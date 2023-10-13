@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import { BaseHttpService } from "src/app/shared/services/base-http.service";
 import { DepatmentModel } from "../models/department.model";
 
-@Injectable()
+@Injectable({providedIn: 'any'})
 export class DepartmentService extends BaseHttpService {
     apiPath: string = 'department';
 
@@ -15,5 +15,10 @@ export class DepartmentService extends BaseHttpService {
     public get(id: string): Observable<DepatmentModel> {
         const url = `${this.getBaseApiPath()}/${id}`
         return this.httpClient.get<DepatmentModel>(url);
+    }
+
+    public getList(): Observable<DepatmentModel[]> {
+        const url = `${this.getBaseApiPath()}`
+        return this.httpClient.get<DepatmentModel[]>(url);
     }
 }

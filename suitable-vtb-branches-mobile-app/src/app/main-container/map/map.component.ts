@@ -19,22 +19,22 @@ export class MapComponent {
     map: Map;
 
     ngOnInit() {
-        load().then((mapglAPI) => {
-            const map = new mapglAPI.Map('map', {
-                center: [36.073078, 52.932986],
-                zoom: 13,
-                key: '6d98d05c-604d-40ef-9102-802de44ff4d8',
-            });
+        // load().then((mapglAPI) => {
+        //     const map = new mapglAPI.Map('map', {
+        //         center: [36.073078, 52.932986],
+        //         zoom: 13,
+        //         key: '6d98d05c-604d-40ef-9102-802de44ff4d8',
+        //     });
             
-          //  this.requestLocation();
-        });
+        //   //  this.requestLocation();
+        // });
     }
 
     requestLocation() {
-        Geolocation.getCurrentPosition().then(data => {
-            this.userCoordinates = data.coords;
-            this.map.setCenter([52.9651, 36.0785])
-        });
+        // Geolocation.getCurrentPosition().then(data => {
+        //     this.userCoordinates = data.coords;
+        //     this.map.setCenter([52.9651, 36.0785])
+        // });
     }
 
     loadMap() {
