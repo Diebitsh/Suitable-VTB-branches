@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { BaseHttpService } from "src/app/shared/services/base-http.service";
-import { DepatmentModel } from "../models/department.model";
+import { DepartmentModel } from "../models/department.model";
 
 @Injectable({providedIn: 'any'})
 export class DepartmentService extends BaseHttpService {
@@ -12,13 +12,13 @@ export class DepartmentService extends BaseHttpService {
         super();
     }
 
-    public get(id: string): Observable<DepatmentModel> {
+    public get(id: string): Observable<DepartmentModel> {
         const url = `${this.getBaseApiPath()}/${id}`
-        return this.httpClient.get<DepatmentModel>(url);
+        return this.httpClient.get<DepartmentModel>(url);
     }
 
-    public getList(): Observable<DepatmentModel[]> {
+    public getList(): Observable<DepartmentModel[]> {
         const url = `${this.getBaseApiPath()}`
-        return this.httpClient.get<DepatmentModel[]>(url);
+        return this.httpClient.get<DepartmentModel[]>(url);
     }
 }

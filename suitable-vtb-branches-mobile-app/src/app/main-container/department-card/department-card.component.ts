@@ -10,8 +10,10 @@ export class DepartmentCardComponent implements OnInit {
 
     constructor(private departmentService: DepartmentService, private toastController: ToastController) {}
 
+    id: string;
+
     ngOnInit() {
-        this.departmentService.get("c14cfcf3-0e94-49c6-96c2-cadddfc5e697").subscribe(x => {
+        this.departmentService.get(this.id).subscribe(x => {
             console.log(x)
         },
         async error => {

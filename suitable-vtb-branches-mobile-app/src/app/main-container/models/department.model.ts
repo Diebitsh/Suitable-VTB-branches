@@ -1,6 +1,6 @@
 import { Service } from "./service.model";
 
-export class DepatmentModel {
+export class DepartmentModel {
     id: string;
     name: string;
     address: string;

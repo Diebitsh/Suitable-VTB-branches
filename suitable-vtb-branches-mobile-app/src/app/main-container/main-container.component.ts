@@ -1,16 +1,25 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
 import { DepartmentCardComponent } from "./department-card/department-card.component";
+import { DepartmentService } from "./services/department.service";
+import { DepartmentModel } from "./models/department.model";
 
 @Component({
     selector: 'app-main-container',
     templateUrl: 'main-container.component.html'
 })
-export class MainContainerComponent {
+export class MainContainerComponent implements OnInit {
 
-    constructor(private modalCtrl: ModalController) {
+    constructor(private modalCtrl: ModalController, private departmentService: DepartmentService) {
         
     }
+
+    departments: DepartmentModel[] = [];
+
+    ngOnInit() {
+        this.loadDepartments();
+    }
+
     async openCard() {
         console.log("открытие карты")
         const modal = await this.modalCtrl.create({
@@ -21,5 +30,12 @@ export class MainContainerComponent {
         })
 
         await modal.present();
+    }
+
+    loadDepartments() {
+        this.departmentService.getList().subscribe(x => {
+            this.departments = x;
+            console.log(this.departments)
+        })
     }
 }

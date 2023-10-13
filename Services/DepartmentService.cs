@@ -42,5 +42,22 @@ namespace Services
 
             return dto;
         }
+
+        public async Task<List<DepartmentDto>> GetList()
+        {
+            var query = _context.Departments;
+
+            var result = await query.Select(x => new DepartmentDto
+            {
+                Id = x.Id,
+                Name = x.Name,
+                Address = x.Address,
+                Latitude = x.Latitude,
+                Longitude = x.Longitude
+            })
+            .ToListAsync();
+
+            return result;
+        }
     }
 }

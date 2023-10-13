@@ -25,26 +25,7 @@ namespace SuitableVtbBranches.Controllers
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
-            var result = new List<object>
-            {
-                new
-                {
-                    Id = 1,
-                    Name = "test",
-                    Address = "tes22t",
-                }, new
-                {
-                    Id = 2,
-                    Name = "test1",
-                    Address = "te222st",
-                }, new
-                {
-                    Id = 3,
-                    Name = "test2",
-                    Address = "te222st",
-                },
-            };
-
+            var result = await _departmentService.GetList();
             return Ok(result);
         }
         
