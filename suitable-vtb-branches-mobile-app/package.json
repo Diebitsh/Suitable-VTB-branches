@@ -13,6 +13,7 @@
   },
   "private": true,
   "dependencies": {
+    "@2gis/mapgl": "^1.40.0",
     "@angular/animations": "^16.0.0",
     "@angular/common": "^16.0.0",
     "@angular/compiler": "^16.0.0",
@@ -23,6 +24,7 @@
     "@angular/router": "^16.0.0",
     "@capacitor/app": "5.0.6",
     "@capacitor/core": "5.5.0",
+    "@capacitor/geolocation": "^5.0.6",
     "@capacitor/haptics": "5.0.6",
     "@capacitor/keyboard": "5.0.6",
     "@capacitor/status-bar": "5.0.6",
