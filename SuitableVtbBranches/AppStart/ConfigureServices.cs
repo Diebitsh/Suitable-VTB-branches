@@ -12,6 +12,7 @@ namespace SuitableVtbBranches.AppStart
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IWorkloadService, WorkloadService>();
             services.AddScoped<IAtmService, AtmService>();
+            services.AddScoped<IBankServiceService, BankServicesService>();
 
             services.AddHostedService<MockWorloadDataGeneratorHostedService>();
 

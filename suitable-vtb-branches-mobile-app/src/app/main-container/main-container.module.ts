@@ -9,7 +9,8 @@ import { DepartmentCardComponent } from "./department-card/department-card.compo
 import { DepartmentCardModule } from "./department-card/department-card.module";
 import { RecentlyOpenedDepartmentsModule } from "./recently-opened-departments/recently-opened-departments.module";
 import { AtmModule } from "./atm/atm.module";
-import { PreferredAtmsModule } from "./prefered-atms/prefered-atm.module";
+import { PreferredAtmsModule } from "./prefered-atms/prefered-atms.module";
+import { PreferedBankServicesModule } from "./prefered-bank-services/prefered-bank-services.module";
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import { PreferredAtmsModule } from "./prefered-atms/prefered-atm.module";
         MapModule,
         PreferredDepartmentsModule,
         DepartmentCardModule,
+        PreferedBankServicesModule,
         PreferredAtmsModule,
         RecentlyOpenedDepartmentsModule
     ],

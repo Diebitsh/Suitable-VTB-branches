@@ -1,0 +1,9 @@
+
+  <ion-card color="primary" *ngFor="let item of services" (click)="findDepartmentByService(item.id)">
+    <ion-card-header>
+      <ion-card-title>{{ item.name }}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>{{ item.description }}</ion-card-content>
+    <ion-card-content >Время в очереди</ion-card-content>
+  </ion-card>
