@@ -18,7 +18,7 @@ register();
 export class PreferredDepartmentsComponent implements OnInit {
 
     @Input() departments: DepartmentModel[] = [];
-    @Output() recentlyViewChanges: Subject<void> = new Subject<void>;
+    @Output() recentlyViewPush: Subject<DepartmentModel> = new Subject<DepartmentModel>;
 
     constructor(
         private modalCtrl: ModalController, 
@@ -33,7 +33,7 @@ export class PreferredDepartmentsComponent implements OnInit {
     }
 
     async openCard(dep: DepartmentModel) {
-        await this.updateRecentlyViews(dep);
+        await this.recentlyViewPush.next(dep);
 
         const modal = await this.modalCtrl.create({
             component: DepartmentCardComponent,
@@ -47,16 +47,5 @@ export class PreferredDepartmentsComponent implements OnInit {
         })
 
         await modal.present();
-    }
-
-    async updateRecentlyViews(dep: DepartmentModel) {
-        let recentlyViews = await this.storage.get("recently_views") as RecentlyViewModel[];
-        if (recentlyViews == null) {
-            recentlyViews = []
-        }
-        recentlyViews = recentlyViews.filter(x => x.id != dep.id);
-        recentlyViews.push({id: dep.id, address: dep.street +  ", " + dep.building} as RecentlyViewModel);
-        this.storage.set("recently_views", recentlyViews);
-        this.recentlyViewChanges.next();
     }
 }

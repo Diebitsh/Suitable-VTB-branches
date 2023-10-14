@@ -2,7 +2,7 @@
 <!-- <app-map></app-map> -->
 <ion-content>
     <app-recently-opened-departments [recentlyViews]="recentlyViews"></app-recently-opened-departments>
-    <app-preferred-departments (recentlyViewChanges)="getRecentlyViews()" [departments]="departments"></app-preferred-departments>
+    <app-preferred-departments (recentlyViewPush)="updateRecentlyOpened($event)" [departments]="departments"></app-preferred-departments>
     <app-prefered-atms [atms]="atms"></app-prefered-atms>
     <app-prefered-bank-services></app-prefered-bank-services>
 </ion-content>

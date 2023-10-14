@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from "@angular/core";
+import { Component, Input, OnInit, Output, SimpleChanges } from "@angular/core";
 import { Storage } from '@ionic/storage-angular';
 import { RecentlyViewModel } from "src/app/shared/models/recently-view.model";
 import { register } from 'swiper/element/bundle';
@@ -12,24 +12,24 @@ register();
     selector: 'app-recently-opened-departments',
     templateUrl: 'recently-opened-departments.component.html'
 })
-export class RecentlyOpenedDepartmentsComponent{
+export class RecentlyOpenedDepartmentsComponent implements OnInit {
 
     constructor(
         private departmentService: DepartmentService,
-        private modalCtrl: ModalController,
-        private storage: Storage
-    ) {
+        private modalCtrl: ModalController
+    ) {}
 
-    }
     @Input() recentlyViews: RecentlyViewModel[] = [];
 
+    async ngOnInit() {
+        
+    }
+
     ngOnChanges(changes: any) {
-        this.recentlyViews = changes.recentlyViews.currentValue
-        console.log(this.storage)
+       this.recentlyViews = changes.recentlyViews.currentValue;
     }
 
     async openCard(id: string) {
-
         const modal = await this.modalCtrl.create({
             component: DepartmentCardComponent,
             breakpoints: [0, 0.3, 0.5, 0.8],
@@ -43,12 +43,8 @@ export class RecentlyOpenedDepartmentsComponent{
         await modal.present();
     }
 
-    removeItem(event: MouseEvent, id: string) {
+    async removeItem(event: MouseEvent, item: RecentlyViewModel) {
         event.stopPropagation();
-        this.recentlyViews = this.recentlyViews.filter(x => x.id != id);
-    }
-
-    async getRecentlyViews() {
-        this.recentlyViews = await this.storage.get("recently_views") as RecentlyViewModel[];
+        this.departmentService.removeFromRecentlyViews(item);
     }
 }

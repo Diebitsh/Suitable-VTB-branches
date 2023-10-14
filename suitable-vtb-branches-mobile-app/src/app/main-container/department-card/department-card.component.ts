@@ -2,6 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { DepartmentService } from "../services/department.service";
 import { ToastController } from "@ionic/angular";
 import { DepartmentModel } from "../models/department.model";
+import { Storage } from '@ionic/storage-angular';
+
 @Component({
     selector: 'app-department-card',
     templateUrl: 'department-card.component.html',
@@ -19,12 +21,11 @@ export class DepartmentCardComponent implements OnInit {
     isLoading: boolean = false;
 
     async ngOnInit() {
-        this.departmentService.get(this.id).subscribe(dep => {
+        this.departmentService.get(this.id).subscribe(async dep => {
             this.departament = dep;
             this.isLoading = false;
         },
         async error => {
-            console.log(error)
             await this.presentToast('bottom', error.error)
             this.isLoading = false;
         })

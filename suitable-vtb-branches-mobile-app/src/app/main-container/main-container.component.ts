@@ -3,9 +3,7 @@ import { DepartmentService } from "./services/department.service";
 import { DepartmentModel } from "./models/department.model";
 import { DepartmentFilter } from "./models/deparment-filter.model";
 import { Geolocation } from '@capacitor/geolocation';
-import { Storage } from '@ionic/storage-angular';
 import { RecentlyViewModel } from "../shared/models/recently-view.model";
-import { AtmComponent } from "./atm/atm.component";
 import { ModalController } from "@ionic/angular";
 import { AtmModel } from "./models/atm.model";
 import { AtmFilter } from "./models/atm-filter.model";
@@ -20,7 +18,6 @@ export class MainContainerComponent implements OnInit {
     constructor(
         private modalCtrl: ModalController,
         private departmentService: DepartmentService,
-        private storage: Storage,
         private atmService: AtmService) {}
 
     departments: DepartmentModel[] = [];
@@ -30,8 +27,11 @@ export class MainContainerComponent implements OnInit {
     recentlyViews: RecentlyViewModel[] =[]
 
     async ngOnInit() {
-        await this.storage.create();
         await this.getRecentlyViews();
+        this.departmentService.recentlyViewChange.subscribe(async (data) => {
+            console.log(data, "data")
+            this.recentlyViews = data;
+        })
 
         let geoInfo = await Geolocation.getCurrentPosition();
         this.deaprtmentFilter.latitude = geoInfo.coords.latitude;
@@ -42,7 +42,12 @@ export class MainContainerComponent implements OnInit {
     }
 
     async getRecentlyViews() {
-        this.recentlyViews = await this.storage.get("recently_views") as RecentlyViewModel[];
+        this.recentlyViews = await this.departmentService.getRecentlyViews();
+        console.log(this.recentlyViews, 12)
+    }
+
+    async updateRecentlyOpened(dep: DepartmentModel) {
+        await this.departmentService.pushDepartmentToRecentlyViews(dep);
     }
 
     loadDepartments() {

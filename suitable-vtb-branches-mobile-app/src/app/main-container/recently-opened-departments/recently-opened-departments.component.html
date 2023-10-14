@@ -2,7 +2,7 @@
     <swiper-slide *ngFor="let item of recentlyViews" (click)="openCard(item.id)">
         <ion-card color="medium">
             <ion-card-content>{{item.address}}</ion-card-content>
-            <ion-card-content (click)="removeItem($event, item.id)">X</ion-card-content>
+            <ion-card-content (click)="removeItem($event, item)">X</ion-card-content>
         </ion-card>
     </swiper-slide>
 </swiper-container>
