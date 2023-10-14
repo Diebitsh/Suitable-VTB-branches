@@ -21,7 +21,7 @@ namespace Services.Hosted
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            TimeSpan interval = TimeSpan.FromMinutes(5);
+            TimeSpan interval = TimeSpan.FromSeconds(30);
             using PeriodicTimer timer = new PeriodicTimer(interval);
 
             while (!stoppingToken.IsCancellationRequested &&
@@ -40,27 +40,31 @@ namespace Services.Hosted
                 var query = context.Departments.AsQueryable();
                 await query.Select(x => x.Workloads).LoadAsync();
 
+                var now = DateTime.Now;
+
                 var deps = await query
                     .Include(x => x.Workloads)
                     .Select(x => new 
                     { 
                         x.Id, 
                         x.MaxVisitors,
-                        LastWorkloadVisits = x.Workloads != null && x.Workloads.Count > 0 ? x.Workloads.OrderByDescending(z => z.LoggingDate).FirstOrDefault().Visitors : 0
+                        Enters = x.Workloads != null && x.Workloads.Count > 0 ? x.Workloads.Where(z => z.LoggingDate.Date == now.Date && z.IsEntered == true).Select(x => x.Visitors).Sum() : 0,
+                        Leavs = x.Workloads != null && x.Workloads.Count > 0 ? x.Workloads.Where(z => z.LoggingDate.Date == now.Date && z.IsEntered == false).Select(x => x.Visitors).Sum() : 0,
                     })
                     .ToListAsync();
 
                 var workLoads = new List<Workload>();
-                var now = DateTime.Now;
                 Random rnd = new Random();
 
                 foreach (var dep in deps)
                 {
+                    var isEntered = dep.Enters - dep.Leavs <= 3 ? true : Convert.ToBoolean(rnd.Next(0, 1));
                     workLoads.Add(new Workload
                     {
                         Id = Guid.NewGuid(),
                         LoggingDate = now,
-                        Visitors = dep.LastWorkloadVisits > 5 ? rnd.Next(dep.LastWorkloadVisits - 7, dep.LastWorkloadVisits + 2) : rnd.Next(0, dep.MaxVisitors),
+                        IsEntered = isEntered,
+                        Visitors = isEntered ? rnd.Next(4, 5) : rnd.Next(1, 3),
                         DepartmentId = dep.Id
                     });
                 }

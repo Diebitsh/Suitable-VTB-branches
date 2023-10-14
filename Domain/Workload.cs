@@ -10,7 +10,12 @@ namespace Domain
 
         public DateTime LoggingDate { get; set; }
 
+        /// <summary>
+        /// Сколько вошлы/выщло
+        /// </summary>
         public int Visitors { get; set; }
+
+        public bool? IsEntered { get; set; }
 
         public class Map : IEntityTypeConfiguration<Workload>
         {
