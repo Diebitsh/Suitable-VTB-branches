@@ -3,7 +3,7 @@ using Contracts;
 using Contracts.Filters;
 using Contracts.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System.Drawing;
+using Services.Helpers;
 
 namespace Services
 {
@@ -77,9 +77,17 @@ namespace Services
 
             await _workloadService.FillDepartmentWorkLoads(result);
 
-            result = result.OrderBy(x => x.WorkloadPercent).ToList();
+            result.ForEach(x => 
+                x.Distance = double.Round(DistanceRangeCalculateHelper.GetDistanceFromLatLonInKm(filter.Latitude, filter.Longitude, x.Latitude, x.Longitude), 3)
+            );
+
+
+            result = result
+                .OrderBy(x => x.Distance)
+                .ToList();
 
             return result;
         }
+        
     }
 }
