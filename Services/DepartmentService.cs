@@ -3,6 +3,7 @@ using Contracts;
 using Contracts.Filters;
 using Contracts.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 
 namespace Services
 {
@@ -50,20 +51,33 @@ namespace Services
 
         public async Task<List<DepartmentDto>> GetList(DepartmentFilter filter)
         {
-            var query = _context.Departments;
+            var query = _context.Departments.AsQueryable();
 
-            var result = await query.Select(x => new DepartmentDto
+            query = query.OrderBy(x => ((filter.Latitude - x.Latitude) * (filter.Latitude - x.Latitude)) +((filter.Longitude - x.Longitude) * (filter.Longitude - x.Longitude)));
+
+            if (filter.ServiceId.HasValue)
             {
-                Id = x.Id,
-                Name = x.Name,
-                Address = x.Address,
-                Latitude = x.Latitude,
-                Longitude = x.Longitude,
-                MaxVisitors = x.MaxVisitors
-            })
-            .ToListAsync();
+                query = query.Where(x => x.BankServices != null && x.BankServices.Any(z => z.BankServiceId == filter.ServiceId.Value));
+            }
 
-            //await _workloadService.FillDepartmentWorkLoads(result);
+            await query.Select(x => x.Workloads).LoadAsync();
+
+            var result = await query
+                .Select(x => new DepartmentDto
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Address = x.Address,
+                    Latitude = x.Latitude,
+                    Longitude = x.Longitude,
+                    MaxVisitors = x.MaxVisitors,
+
+                })
+                .ToListAsync();
+
+            await _workloadService.FillDepartmentWorkLoads(result);
+
+            result = result.OrderBy(x => x.WorkloadPercent).ToList();
 
             return result;
         }

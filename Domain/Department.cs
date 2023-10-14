@@ -22,6 +22,8 @@ namespace Domain
         /// </summary>
         public int MaxVisitors { get; set; }
 
+        public ICollection<Workload>? Workloads { get; set; }
+
         public class Map : IEntityTypeConfiguration<Department>
         {
             public void Configure(EntityTypeBuilder<Department> builder)
@@ -32,6 +34,7 @@ namespace Domain
 
                 builder.HasOne(x => x.Schedule).WithMany().HasForeignKey(x => x.ScheduleId);
                 builder.HasMany(x => x.BankServices).WithOne(x => x.Department).HasForeignKey(x => x.DepartmentId);
+                builder.HasMany(x => x.Workloads).WithOne(x => x.Department).HasForeignKey(x => x.DepartmentId);
             }
         }
     }

@@ -71,20 +71,10 @@ namespace Context
                     Name = "ДО «Лобня» Филиала № 7701 Банка ВТБ (ПАО)",
                     Address = "Московская область, г. Лобня, ул. Ленина, д. 9",
                     ScheduleId = Guid.Parse("3de0d07c-ddb7-4562-b342-4bdffe9bed7c"),
-                    Latitude = 56.184479,
-                    Longitude = 36.984314,
+                    Latitude = 56.012386,
+                    Longitude = 37.482059,
                     MaxVisitors = 60
-                },
-                new Department
-                {
-                    Id = Guid.Parse("25e942c4-e807-4ae9-9768-04a502bf7bdd"),
-                    Name = "ДО «Солнечногорский» Филиала № 7701 Банка ВТБ (ПАО)",
-                    Address = "Московская область, г. Солнечногорск, ул. Красная, д. 60",
-                    ScheduleId = Guid.Parse("3de0d07c-ddb7-4562-b342-4bdffe9bed7c"),
-                    Latitude = 56.184479,
-                    Longitude = 36.984314,
-                    MaxVisitors = 60
-                },
+                }
             });
 
             modelBuilder.Entity<BankService>().HasData(new BankService[]
