@@ -5,6 +5,8 @@ import { IonicModule } from "@ionic/angular";
 import { RouterModule } from "@angular/router";
 import { MapModule } from "./map/map.module";
 import { PreferredDepartmentsModule } from "./preferred-departments/preferred-departments.module";
+import { DepartmentCardComponent } from "./department-card/department-card.component";
+import { DepartmentCardModule } from "./department-card/department-card.module";
 
 @NgModule({
     imports: [
@@ -17,7 +19,8 @@ import { PreferredDepartmentsModule } from "./preferred-departments/preferred-de
             }
         ]),
         MapModule,
-        PreferredDepartmentsModule
+        PreferredDepartmentsModule,
+        DepartmentCardModule
     ],
     exports: [MainContainerComponent],
     declarations: [MainContainerComponent],

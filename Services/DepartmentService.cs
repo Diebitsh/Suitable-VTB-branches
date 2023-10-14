@@ -28,7 +28,7 @@ namespace Services
                 Id = entity.Id,
                 Address = entity.Address,
                 Name = entity.Name,
-                Shedule = new SheduleDto
+                Schedule = new SheduleDto
                 {
                     Monday = entity.Schedule.Monday,
                     Tuesday = entity.Schedule.Tuesday,

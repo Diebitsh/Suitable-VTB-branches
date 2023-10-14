@@ -29,3 +29,10 @@
 .bottom-sheet {
     --border-radius: 20px !important;
 }
+
+.card-item {
+    box-shadow: none !important;
+}
+.scroll-y {
+    --display: none !important;
+}

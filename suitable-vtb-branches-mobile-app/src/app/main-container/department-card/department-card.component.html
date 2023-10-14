@@ -1,1 +1,34 @@
-Отделение
+<ion-content>
+    <div style="height: 100%; width: 100%;" class="gradient" *ngIf="!departament"></div>
+    <ion-card class="card-item">
+        <ion-card-header>
+          <ion-card-title>{{departament.name}}</ion-card-title>
+          <ion-card-subtitle>{{departament.address}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+                <ion-label>Понедельник: {{departament.schedule.monday}}</ion-label> 
+            </ion-item>
+            <ion-item>
+                <ion-label>Вторник: {{departament.schedule.tuesday}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>Среда: {{departament.schedule.wednesday}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>Четверг: {{departament.schedule.thursday}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>Пятница: {{departament.schedule.friday}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>Суббота: {{departament.schedule.sunday}}</ion-label>
+            </ion-item>
+            <ion-item>
+                <ion-label>Воскресение: {{departament.schedule.saturday}}</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+</ion-content>

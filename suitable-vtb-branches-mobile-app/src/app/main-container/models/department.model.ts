@@ -5,9 +5,9 @@ export class DepartmentModel {
     name: string;
     address: string;
     imageUrl: string;
-    Latitude: number;
+    latitude: number;
     longitude: number;
-    shedule: Schedule;
+    schedule: Schedule;
     metroStation: string;
     busStation: BusStation;
     services: Service[];
@@ -26,5 +26,5 @@ export class Schedule
     thursday: string;
     friday: string;
     saturday: string;
-    sunDay: string;
+    sunday: string;
 }
