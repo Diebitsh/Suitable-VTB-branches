@@ -1,11 +1,7 @@
 
 <app-recently-opened-departments [recentlyViews]="recentlyViews"></app-recently-opened-departments>
 <!-- <app-map></app-map> -->
-<<<<<<< HEAD
 <ion-content>
-    <app-preferred-departments [departments]="departments"></app-preferred-departments>
+    <app-preferred-departments (recentlyViewChanges)="getRecentlyViews()" [departments]="departments"></app-preferred-departments>
     <app-prefered-atms [atms]="atms"></app-prefered-atms>
 </ion-content>
-=======
-<app-preferred-departments (recentlyViewChanges)="getRecentlyViews()" [departments]="departments"></app-preferred-departments>
->>>>>>> 5d076782e7aeaedf03764bb3b060f10fb197e1a8
