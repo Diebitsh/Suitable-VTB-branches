@@ -5,7 +5,8 @@ import { DepartmentCardComponent } from "../department-card/department-card.comp
 
 @Component({
     selector: 'app-preferred-departments',
-    templateUrl: 'preferred-departments.component.html'
+    templateUrl: 'preferred-departments.component.html',
+    styleUrls: ['preferred-departments.component.scss']
 })
 export class PreferredDepartmentsComponent {
 
@@ -15,6 +16,14 @@ export class PreferredDepartmentsComponent {
 
     }
 
+    options = {
+        slidesPerView: 7,
+        centeredSlides: true,
+        loop: true,
+        spaceBetween: 10,
+        onInit: () => {
+        }
+    }
     async openCard(id: string) {
         const modal = await this.modalCtrl.create({
             component: DepartmentCardComponent,
