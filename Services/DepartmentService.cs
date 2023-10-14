@@ -26,7 +26,7 @@ namespace Services
                 .SingleOrDefaultAsync(x => x.Id == id);
 
             if (entity == null)
-                throw new Exception("Запрашиваемое отделение не найдено");
+                throw new Exception("Запрашиваемое отделение не найдено!");
 
             var dto = new DepartmentDto
             {
@@ -43,6 +43,11 @@ namespace Services
                     Saturday = entity.Schedule.Saturday,
                     SunDay = entity.Schedule.Sunday
                 },
+                BankServicesDto = entity.BankServices.Select( x => new BankServiceDto {
+                    Id = x.BankServiceId,
+                    Name = x.BankService.Name,
+                    Description = x.BankService.Description
+                }).ToList()
             };
 
             return dto;

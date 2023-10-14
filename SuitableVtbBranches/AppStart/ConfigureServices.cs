@@ -1,4 +1,5 @@
-﻿using Contracts.Interfaces;
+﻿using Contracts;
+using Contracts.Interfaces;
 using Services;
 using Services.Hosted;
 
@@ -10,6 +11,7 @@ namespace SuitableVtbBranches.AppStart
         {
             services.AddScoped<IDepartmentService, DepartmentService>();
             services.AddScoped<IWorkloadService, WorkloadService>();
+            services.AddScoped<IAtmService, AtmService>();
 
             services.AddHostedService<MockWorloadDataGeneratorHostedService>();
 

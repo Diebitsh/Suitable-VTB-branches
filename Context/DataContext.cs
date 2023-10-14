@@ -15,6 +15,7 @@ namespace Context
         public DbSet<Schedule> Schedules { get; set; }
         public DbSet<BankService> BankServices { get; set; }
         public DbSet<BankServiceToDepartment> BankServicesToDepartments { get; set; }
+        public DbSet<Atm> Atms { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,6 +27,7 @@ namespace Context
             modelBuilder.ApplyConfiguration<Workload>(new Workload.Map());
             modelBuilder.ApplyConfiguration<BankService>(new BankService.Map());
             modelBuilder.ApplyConfiguration<BankServiceToDepartment>(new BankServiceToDepartment.Map());
+            modelBuilder.ApplyConfiguration<Atm>(new Atm.Map());
 
             modelBuilder.Entity<Schedule>().HasData(new Schedule[]
             {
@@ -148,6 +150,45 @@ namespace Context
                 {
                     BankServiceId = Guid.Parse("572d672a-d6a7-43f6-8c1a-160f96db2c52"),
                     DepartmentId = Guid.Parse("9b60d282-15cb-41ac-ad2a-609e2f097d46")
+                },
+            });
+
+            modelBuilder.Entity<Atm>().HasData(new Atm[]
+            {
+                new Atm
+                {
+                    Id = Guid.Parse("992d01cb-9893-4264-b08c-34a5c1b337b2"),
+                    Address = "Московская область, г. Солнечногорск, ул. Красная, д. 60",
+                    Latitude = 56.184479,
+                    Longitude = 36.984314,
+                },
+                new Atm
+                {
+                    Id = Guid.Parse("572d672a-d6a7-43f6-8c1a-160f96db2c52"),
+                    Address = "Московская область, г. Лобня, ул. Ленина, д. 9",
+                    Latitude = 56.184479,
+                    Longitude = 36.984314,
+                },
+                new Atm
+                {
+                    Id = Guid.Parse("572d672a-d6a7-43f6-8c1a-160f96db2c51"),
+                    Address = "Московская область, г. Солнечногорск, ул. Красная, д. 160",
+                    Latitude = 56.184479,
+                    Longitude = 36.984314,
+                },
+                new Atm
+                {
+                    Id = Guid.Parse("572d672a-d6a7-43f6-8c1a-160f96db2c57"),
+                    Address = "Московская область, г. Солнечногорск, ул. Баранова, д. 12",
+                    Latitude = 56.184479,
+                    Longitude = 36.984314,
+                },
+                new Atm
+                {
+                    Id = Guid.Parse("572d672a-d6a7-43f6-8c1a-260f96db2c57"),
+                    Address = "Московская область, г. Солнечногорск, ул. Баранова, д. 1",
+                    Latitude = 56.184479,
+                    Longitude = 36.984314,
                 },
             });
         }

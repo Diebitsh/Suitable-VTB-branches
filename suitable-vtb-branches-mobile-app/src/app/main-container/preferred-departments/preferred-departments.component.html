@@ -1,4 +1,4 @@
-<ion-content style="height: 550px;">
+<ion-content scroll-y="false">
     <swiper-container [slidesPerView]="1.2" [spaceBetween]="-20">
       <swiper-slide *ngFor="let item of departments">
         <ion-card  color="primary" (click)="openCard(item.id)">
@@ -9,7 +9,7 @@
               </ion-card-header>
             </ion-row>
             <ion-row>
-              <ion-card-content> Загруженность </ion-card-content>
+              <ion-card-content> {{item.address}} </ion-card-content>
             </ion-row>
           </ion-grid>
         </ion-card>

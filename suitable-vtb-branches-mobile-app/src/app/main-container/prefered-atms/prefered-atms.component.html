@@ -1,0 +1,13 @@
+<ion-content scroll-y="false">
+  <swiper-container [slidesPerView]="1.2" [spaceBetween]="-20">
+    <swiper-slide *ngFor="let item of atms">
+      <ion-card  color="primary" (click)="openCard(item.id)">
+        <ion-grid>
+          <ion-row>
+            <ion-card-content> Банкомат </ion-card-content>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </swiper-slide>
+  </swiper-container>
+</ion-content>
