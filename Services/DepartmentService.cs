@@ -60,7 +60,7 @@ namespace Services
             })
             .ToListAsync();
 
-            await _workloadService.FillDepartmentWorkLoads(result);
+            //await _workloadService.FillDepartmentWorkLoads(result);
 
             return result;
         }

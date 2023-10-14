@@ -2,6 +2,10 @@ import { Component, Input } from "@angular/core";
 import { DepartmentModel } from "../models/department.model";
 import { ModalController } from "@ionic/angular";
 import { DepartmentCardComponent } from "../department-card/department-card.component";
+import { register } from 'swiper/element/bundle';
+import { from } from "rxjs";
+
+register();
 
 @Component({
     selector: 'app-preferred-departments',
@@ -14,15 +18,6 @@ export class PreferredDepartmentsComponent {
 
     constructor(private modalCtrl: ModalController) {
 
-    }
-
-    options = {
-        slidesPerView: 7,
-        centeredSlides: true,
-        loop: true,
-        spaceBetween: 10,
-        onInit: () => {
-        }
     }
     async openCard(id: string) {
         const modal = await this.modalCtrl.create({

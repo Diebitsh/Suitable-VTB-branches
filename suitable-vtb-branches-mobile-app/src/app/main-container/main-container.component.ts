@@ -21,7 +21,6 @@ export class MainContainerComponent implements OnInit {
     }
 
     async openCard() {
-        console.log("открытие карты")
         const modal = await this.modalCtrl.create({
             component: DepartmentCardComponent,
             breakpoints: [0, 0.3, 0.5, 0.8],
