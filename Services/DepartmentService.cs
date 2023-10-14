@@ -20,7 +20,8 @@ namespace Services
         public async Task<DepartmentDto> GetById(Guid id)
         {
             var entity = await _context.Departments
-                .Include(x => x.Schedule)
+                .Include(x => x.Schedule) 
+                .Include(x => x.BankServices)
                 .SingleOrDefaultAsync(x => x.Id == id);
 
             if (entity == null)
@@ -40,7 +41,7 @@ namespace Services
                     Friday = entity.Schedule.Friday,
                     Saturday = entity.Schedule.Saturday,
                     SunDay = entity.Schedule.Sunday
-                }
+                },
             };
 
             return dto;

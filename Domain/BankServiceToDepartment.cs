@@ -19,7 +19,7 @@ namespace Domain
 
                 builder.HasKey(x => new { x.DepartmentId, x.BankServiceId });
 
-                builder.HasOne(x => x.Department).WithMany().HasForeignKey(x => x.DepartmentId);
+                builder.HasOne(x => x.Department).WithMany(x => x.BankServices).HasForeignKey(x => x.DepartmentId);
                 builder.HasOne(x => x.BankService).WithMany().HasForeignKey(x => x.BankServiceId);
             }
         }

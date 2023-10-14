@@ -15,6 +15,8 @@ namespace Domain
 
         public string Address { get; set; }
 
+        public List<BankServiceToDepartment> BankServices { get; set; }
+
         /// <summary>
         /// Максимальное число посетителей
         /// </summary>
@@ -29,6 +31,7 @@ namespace Domain
                 builder.HasKey(x => x.Id);
 
                 builder.HasOne(x => x.Schedule).WithMany().HasForeignKey(x => x.ScheduleId);
+                builder.HasMany(x => x.BankServices).WithOne(x => x.Department).HasForeignKey(x => x.DepartmentId);
             }
         }
     }
