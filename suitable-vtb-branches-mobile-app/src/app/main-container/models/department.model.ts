@@ -13,6 +13,11 @@ export class DepartmentModel {
     services: Service[];
     distance: number;
     workloadPercent: number;
+    region: string;
+    city: string;
+    street: string;
+    building: string;
+    Floor?: string;
 }
 
 export class BusStation {

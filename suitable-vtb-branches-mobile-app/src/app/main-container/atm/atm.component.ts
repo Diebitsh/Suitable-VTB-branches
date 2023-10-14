@@ -11,12 +11,14 @@ export class AtmComponent  implements OnInit {
 
   public atm: AtmModel;
   private id: string;
+  public isLoading: boolean = false;
 
   constructor(private atmService: AtmService) { }
 
   ngOnInit() {
     this.atmService.get(this.id).subscribe(x => {
         this.atm = x;
+        this.isLoading = false;
     })
   }
 }

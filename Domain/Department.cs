@@ -13,7 +13,35 @@ namespace Domain
         public Guid ScheduleId { get; set; }
         public Schedule Schedule { get; set; }
 
-        public string Address { get; set; }
+        /// <summary>
+        /// Почтовый индекс
+        /// </summary>
+        public string ZipCode { get; set; }
+
+        /// <summary>
+        /// Область
+        /// </summary>
+        public string Region { get; set; }
+
+        /// <summary>
+        /// Город
+        /// </summary>
+        public string City { get; set; }
+
+        /// <summary>
+        /// Улица
+        /// </summary>
+        public string Street { get; set; }
+
+        /// <summary>
+        /// Дом
+        /// </summary>
+        public string Building { get; set; }
+
+        /// <summary>
+        /// Этаж
+        /// </summary>
+        public string? Floor { get; set; }
 
         public List<BankServiceToDepartment> BankServices { get; set; }
 
@@ -22,7 +50,7 @@ namespace Domain
         /// </summary>
         public int MaxVisitors { get; set; }
 
-        public ICollection<Workload>? Workloads { get; set; }
+        public ICollection<Workload> Workloads { get; set; }
 
         public class Map : IEntityTypeConfiguration<Department>
         {

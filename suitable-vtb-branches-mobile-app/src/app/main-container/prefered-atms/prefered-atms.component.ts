@@ -26,7 +26,8 @@ export class PreferedAtmsComponent{
           initialBreakpoint: 0.8,
           cssClass: 'bottom-sheet',
           componentProps: {
-              id: id
+              id: id,
+              isLoading: true
           }
       })
 

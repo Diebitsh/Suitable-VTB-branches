@@ -32,7 +32,12 @@ namespace Services
             var dto = new DepartmentDto
             {
                 Id = entity.Id,
-                Address = entity.Address,
+                Address = "",
+                Region = entity.Region,
+                City = entity.City,
+                Street = entity.Street,
+                Building = entity.Building,
+                Floor = entity.Floor,
                 Name = entity.Name,
                 Schedule = new SheduleDto
                 {
@@ -72,7 +77,12 @@ namespace Services
                 {
                     Id = x.Id,
                     Name = x.Name,
-                    Address = x.Address,
+                    Address = "",
+                    Region = x.Region,
+                    City = x.City,
+                    Street = x.Street,
+                    Building = x.Building,
+                    Floor = x.Floor,
                     Latitude = x.Latitude,
                     Longitude = x.Longitude,
                     MaxVisitors = x.MaxVisitors,

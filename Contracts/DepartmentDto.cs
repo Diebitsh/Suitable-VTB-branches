@@ -14,6 +14,41 @@ public class DepartmentDto: IEntityDto
     public int MaxVisitors { get; set; }
     public List<BankServiceDto> BankServicesDto { get; set; }
     public double Distance { get; set; }
+
+    /// <summary>
+    /// Почтовый индекс
+    /// </summary>
+    public string ZipCode { get; set; }
+
+    /// <summary>
+    /// Область
+    /// </summary>
+    public string Region { get; set; }
+
+    /// <summary>
+    /// Город
+    /// </summary>
+    public string City { get; set; }
+
+    /// <summary>
+    /// Улица
+    /// </summary>
+    public string Street { get; set; }
+
+    /// <summary>
+    /// Дом
+    /// </summary>
+    public string Building { get; set; }
+
+    /// <summary>
+    /// Этаж
+    /// </summary>
+    public string? Floor { get; set; }
+
+    /// <summary>
+    /// предполагаемое время ождиания в минутках
+    /// </summary>
+    public int EstimatedWaitingTime { get; set; }
 }
 
 public class BusStation

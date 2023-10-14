@@ -36,7 +36,8 @@ export class PreferredDepartmentsComponent implements OnInit {
             initialBreakpoint: 0.8,
             cssClass: 'bottom-sheet',
             componentProps: {
-                id: dep.id
+                id: dep.id,
+                isLoading: true
             }
         })
 
@@ -49,7 +50,7 @@ export class PreferredDepartmentsComponent implements OnInit {
             recentlyViews = []
         }
         recentlyViews = recentlyViews.filter(x => x.id != dep.id);
-        recentlyViews.push({id: dep.id, address: dep.address} as RecentlyViewModel);
+        recentlyViews.push({id: dep.id, address: dep.street +  ", " + dep.building} as RecentlyViewModel);
         this.storage.set("recently_views", recentlyViews);
         this.recentlyViewChanges.next();
     }
