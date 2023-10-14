@@ -8,6 +8,7 @@ namespace SuitableVtbBranches.AppStart
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<IDepartmentService, DepartmentService>();
+            services.AddScoped<IWorkloadService, WorkloadService>();
 
             return services;
         }

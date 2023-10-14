@@ -1,7 +1,7 @@
 using Context;
 using Microsoft.EntityFrameworkCore;
 using SuitableVtbBranches.AppStart;
-
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
