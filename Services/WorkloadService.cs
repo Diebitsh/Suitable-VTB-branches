@@ -26,9 +26,11 @@ namespace Services
 
             foreach (var department in departments)
             {
-                var depWorkLoad = workLoadList.Where(x => x.DepartmentId == department.Id).OrderByDescending(x => x.LoggingDate).FirstOrDefault();
+                var depWorkLoads = workLoadList.Where(x => x.DepartmentId == department.Id).OrderByDescending(x => x.LoggingDate).ToList();
+                var lastDepWorkLoad = depWorkLoads.FirstOrDefault();
 
-                department.WorkloadPercent = (depWorkLoad.Visitors * 100) / department.MaxVisitors;
+
+                department.WorkloadPercent = lastDepWorkLoad == null ? 0 : (lastDepWorkLoad.Visitors * 100) / department.MaxVisitors;
             }
         }
     }

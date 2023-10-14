@@ -21,7 +21,7 @@ namespace Services.Hosted
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            TimeSpan interval = TimeSpan.FromMinutes(1);
+            TimeSpan interval = TimeSpan.FromMinutes(5);
             using PeriodicTimer timer = new PeriodicTimer(interval);
 
             while (!stoppingToken.IsCancellationRequested &&
@@ -37,8 +37,17 @@ namespace Services.Hosted
             {
                 var context = scope.ServiceProvider.GetRequiredService<DataContext>();
 
-                var deps = await context.Departments
-                    .Select(x => new { x.Id, x.MaxVisitors })
+                var query = context.Departments.AsQueryable();
+                await query.Select(x => x.Workloads).LoadAsync();
+
+                var deps = await query
+                    .Include(x => x.Workloads)
+                    .Select(x => new 
+                    { 
+                        x.Id, 
+                        x.MaxVisitors,
+                        LastWorkloadVisits = x.Workloads != null && x.Workloads.Count > 0 ? x.Workloads.OrderByDescending(z => z.LoggingDate).FirstOrDefault().Visitors : 0
+                    })
                     .ToListAsync();
 
                 var workLoads = new List<Workload>();
@@ -51,7 +60,7 @@ namespace Services.Hosted
                     {
                         Id = Guid.NewGuid(),
                         LoggingDate = now,
-                        Visitors = rnd.Next(20, dep.MaxVisitors),
+                        Visitors = dep.LastWorkloadVisits > 5 ? rnd.Next(dep.LastWorkloadVisits - 5, dep.LastWorkloadVisits + 5) : rnd.Next(0, dep.MaxVisitors),
                         DepartmentId = dep.Id
                     });
                 }

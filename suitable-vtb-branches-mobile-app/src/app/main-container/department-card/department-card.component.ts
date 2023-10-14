@@ -16,14 +16,17 @@ export class DepartmentCardComponent implements OnInit {
         private toastController: ToastController) {}
 
     id: string;
+    isLoading: boolean = false;
 
     async ngOnInit() {
         this.departmentService.get(this.id).subscribe(dep => {
             this.departament = dep;
+            this.isLoading = false;
         },
         async error => {
             console.log(error)
             await this.presentToast('bottom', error.error)
+            this.isLoading = false;
         })
     }
 

@@ -1,6 +1,6 @@
 <ion-content>
-  <div style="height: 100%; width: 100%;" class="gradient" *ngIf="!atm"></div>
-  <ion-card class="card-item">
+  <div style="height: 100%; width: 100%;" class="gradient" *ngIf="isLoading"></div>
+  <ion-card *ngIf="!isLoading" class="card-item">
       <ion-card-header>
         <ion-card-title>{{atm.address}}</ion-card-title>
       </ion-card-header>
