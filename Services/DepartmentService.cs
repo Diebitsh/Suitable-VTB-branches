@@ -8,10 +8,12 @@ namespace Services
     public class DepartmentService : IDepartmentService
     {
         private readonly DataContext _context;
+        private readonly IWorkloadService _workloadService;
 
-        public DepartmentService(DataContext context)
+        public DepartmentService(DataContext context, IWorkloadService workloadService)
         {
             _context = context;
+            _workloadService = workloadService;
         }
 
         public async Task<DepartmentDto> GetById(Guid id)
@@ -53,9 +55,12 @@ namespace Services
                 Name = x.Name,
                 Address = x.Address,
                 Latitude = x.Latitude,
-                Longitude = x.Longitude
+                Longitude = x.Longitude,
+                MaxVisitors = x.MaxVisitors
             })
             .ToListAsync();
+
+            await _workloadService.FillDepartmentWorkLoads(result);
 
             return result;
         }

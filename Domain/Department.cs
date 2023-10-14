@@ -15,7 +15,10 @@ namespace Domain
 
         public string Address { get; set; }
 
-        public string ImageUrl { get; set; }
+        /// <summary>
+        /// Максимальное число посетителей
+        /// </summary>
+        public int MaxVisitors { get; set; }
 
         public class Map : IEntityTypeConfiguration<Department>
         {

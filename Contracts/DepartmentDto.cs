@@ -10,6 +10,8 @@ public class DepartmentDto: IEntityDto
     public string ImageUrl { get; set; }
     public string MetroStation { get; set; }
     public BusStation BusStation { get; set; }
+    public double WorkloadPercent { get; set; }
+    public int MaxVisitors { get; set; }
 }
 
 public class BusStation
