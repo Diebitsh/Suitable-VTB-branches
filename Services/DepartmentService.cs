@@ -22,6 +22,7 @@ namespace Services
             var entity = await _context.Departments
                 .Include(x => x.Schedule) 
                 .Include(x => x.BankServices)
+                .ThenInclude(x => x.BankService)
                 .SingleOrDefaultAsync(x => x.Id == id);
 
             if (entity == null)
