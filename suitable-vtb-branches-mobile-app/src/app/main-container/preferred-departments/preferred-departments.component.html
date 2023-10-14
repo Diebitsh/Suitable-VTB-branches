@@ -1,7 +1,7 @@
 <ion-content style="height: 550px;">
     <swiper-container [slidesPerView]="1.2" [spaceBetween]="-20">
       <swiper-slide *ngFor="let item of departments">
-        <ion-card  color="primary" (click)="openCard(item.id)">
+        <ion-card  color="primary" (click)="openCard(item)">
           <ion-grid>
             <ion-row>
               <ion-card-header>

@@ -81,7 +81,6 @@ namespace Services
                 x.Distance = double.Round(DistanceRangeCalculateHelper.GetDistanceFromLatLonInKm(filter.Latitude, filter.Longitude, x.Latitude, x.Longitude), 3)
             );
 
-
             result = result
                 .OrderBy(x => x.Distance)
                 .ToList();

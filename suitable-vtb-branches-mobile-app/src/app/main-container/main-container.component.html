@@ -1,3 +1,4 @@
+
+<app-recently-opened-departments [recentlyViews]="recentlyViews"></app-recently-opened-departments>
 <!-- <app-map></app-map> -->
-<app-preferred-departments [departments]="departments"></app-preferred-departments>
-<ion-button (click)="openCard()">Default</ion-button>
+<app-preferred-departments (recentlyViewChanges)="getRecentlyViews()" [departments]="departments"></app-preferred-departments>

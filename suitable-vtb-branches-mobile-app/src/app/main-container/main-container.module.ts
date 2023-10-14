@@ -7,6 +7,7 @@ import { MapModule } from "./map/map.module";
 import { PreferredDepartmentsModule } from "./preferred-departments/preferred-departments.module";
 import { DepartmentCardComponent } from "./department-card/department-card.component";
 import { DepartmentCardModule } from "./department-card/department-card.module";
+import { RecentlyOpenedDepartmentsModule } from "./recently-opened-departments/recently-opened-departments.module";
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import { DepartmentCardModule } from "./department-card/department-card.module";
         ]),
         MapModule,
         PreferredDepartmentsModule,
-        DepartmentCardModule
+        DepartmentCardModule,
+        RecentlyOpenedDepartmentsModule
     ],
     exports: [MainContainerComponent],
     declarations: [MainContainerComponent],

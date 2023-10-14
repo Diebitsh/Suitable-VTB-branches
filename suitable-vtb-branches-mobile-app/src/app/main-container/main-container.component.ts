@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { ModalController } from "@ionic/angular";
-import { DepartmentCardComponent } from "./department-card/department-card.component";
 import { DepartmentService } from "./services/department.service";
 import { DepartmentModel } from "./models/department.model";
 import { DepartmentFilter } from "./models/deparment-filter.model";
 import { Geolocation } from '@capacitor/geolocation';
+import { Storage } from '@ionic/storage-angular';
+import { RecentlyViewModel } from "../shared/models/recently-view.model";
 
 @Component({
     selector: 'app-main-container',
@@ -12,29 +12,27 @@ import { Geolocation } from '@capacitor/geolocation';
 })
 export class MainContainerComponent implements OnInit {
 
-    constructor(private modalCtrl: ModalController, private departmentService: DepartmentService) {
-        
-    }
+    constructor(
+        private departmentService: DepartmentService,
+        private storage: Storage) {}
 
     departments: DepartmentModel[] = [];
     filter: DepartmentFilter = new DepartmentFilter();
+    recentlyViews: RecentlyViewModel[] =[]
 
     async ngOnInit() {
+        await this.storage.create();
+        await this.getRecentlyViews();
+
         let geoInfo = await Geolocation.getCurrentPosition();
         this.filter.latitude = geoInfo.coords.latitude;
         this.filter.longitude = geoInfo.coords.longitude;
+
         this.loadDepartments();
     }
 
-    async openCard() {
-        const modal = await this.modalCtrl.create({
-            component: DepartmentCardComponent,
-            breakpoints: [0, 0.3, 0.5, 0.8],
-            initialBreakpoint: 0.8,
-            cssClass: 'bottom-sheet',
-        })
-
-        await modal.present();
+    async getRecentlyViews() {
+        this.recentlyViews = await this.storage.get("recently_views") as RecentlyViewModel[];
     }
 
     loadDepartments() {
