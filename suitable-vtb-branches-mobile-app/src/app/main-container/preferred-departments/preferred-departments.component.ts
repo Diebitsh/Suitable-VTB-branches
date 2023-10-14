@@ -6,6 +6,7 @@ import { register } from 'swiper/element/bundle';
 import { Storage } from '@ionic/storage-angular';
 import { RecentlyViewModel } from "src/app/shared/models/recently-view.model";
 import { Subject } from "rxjs";
+import { DepartmentService } from "../services/department.service";
 
 register();
 
@@ -19,7 +20,11 @@ export class PreferredDepartmentsComponent implements OnInit {
     @Input() departments: DepartmentModel[] = [];
     @Output() recentlyViewChanges: Subject<void> = new Subject<void>;
 
-    constructor(private modalCtrl: ModalController, private storage: Storage) {
+    constructor(
+        private modalCtrl: ModalController, 
+        private storage: Storage,
+        private departmentService: DepartmentService
+    ) {
 
     }
 

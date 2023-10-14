@@ -16,7 +16,8 @@ export class RecentlyOpenedDepartmentsComponent{
 
     constructor(
         private departmentService: DepartmentService,
-        private modalCtrl: ModalController
+        private modalCtrl: ModalController,
+        private storage: Storage
     ) {
 
     }
@@ -24,6 +25,7 @@ export class RecentlyOpenedDepartmentsComponent{
 
     ngOnChanges(changes: any) {
         this.recentlyViews = changes.recentlyViews.currentValue
+        console.log(this.storage)
     }
 
     async openCard(id: string) {
@@ -39,5 +41,14 @@ export class RecentlyOpenedDepartmentsComponent{
         })
     
         await modal.present();
-      }
+    }
+
+    removeItem(event: MouseEvent, id: string) {
+        event.stopPropagation();
+        this.recentlyViews = this.recentlyViews.filter(x => x.id != id);
+    }
+
+    async getRecentlyViews() {
+        this.recentlyViews = await this.storage.get("recently_views") as RecentlyViewModel[];
+    }
 }
