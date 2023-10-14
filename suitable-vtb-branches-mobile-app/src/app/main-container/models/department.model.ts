@@ -18,6 +18,7 @@ export class DepartmentModel {
     street: string;
     building: string;
     Floor?: string;
+    estimatedWaitingTime: number;
 }
 
 export class BusStation {

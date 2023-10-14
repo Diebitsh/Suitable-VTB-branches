@@ -160,35 +160,51 @@ namespace Context
                 new Atm
                 {
                     Id = Guid.Parse("992d01cb-9893-4264-b08c-34a5c1b337b2"),
-                    Address = "Московская область, г. Солнечногорск, ул. Красная, д. 60",
+                    Region = "Московская область",
+                    City = "Солнечногорск",
+                    Street = "Красная",
+                    Building = "60",
                     Latitude = 56.184479,
                     Longitude = 36.984314,
                 },
                 new Atm
                 {
                     Id = Guid.Parse("572d672a-d6a7-43f6-8c1a-160f96db2c52"),
-                    Address = "Московская область, г. Лобня, ул. Ленина, д. 9",
+                    Region = "Московская область",
+                    City = "Лобня",
+                    Street = "Ленина",
+                    Building = "9",
                     Latitude = 56.184479,
                     Longitude = 36.984314,
                 },
                 new Atm
                 {
                     Id = Guid.Parse("572d672a-d6a7-43f6-8c1a-160f96db2c51"),
-                    Address = "Московская область, г. Солнечногорск, ул. Красная, д. 160",
+                    Region = "Московская область",
+                    City = "Солнечногорск",
+                    Street = "Красная",
+                    Building = "160",
                     Latitude = 56.184479,
                     Longitude = 36.984314,
                 },
                 new Atm
                 {
                     Id = Guid.Parse("572d672a-d6a7-43f6-8c1a-160f96db2c57"),
-                    Address = "Московская область, г. Солнечногорск, ул. Баранова, д. 12",
+                    Region = "Московская область",
+                    City = "Солнечногорск",
+                    Street = "Баранова",
+                    Building = "12",
                     Latitude = 56.184479,
                     Longitude = 36.984314,
                 },
                 new Atm
                 {
                     Id = Guid.Parse("572d672a-d6a7-43f6-8c1a-260f96db2c57"),
-                    Address = "Московская область, г. Солнечногорск, ул. Баранова, д. 1",
+                    Region = "Московская область",
+                    City = "Солнечногорск",
+                    Street = "Баранова",
+                    Building = "1",
+
                     Latitude = 56.184479,
                     Longitude = 36.984314,
                 },

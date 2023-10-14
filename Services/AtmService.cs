@@ -23,7 +23,11 @@ namespace Services {
 
             var dto = new AtmDto {
                 Id = entity.Id,
-                Address = entity.Address,
+                City = entity.City,
+                Region = entity.Region,
+                Building = entity.Building,
+                Floor = entity.Floor,
+                Street = entity.Street,
                 Latitude = entity.Latitude,
                 Longitude = entity.Longitude,
             };
@@ -38,7 +42,11 @@ namespace Services {
             var result = await query.Select(x => new AtmDto
             {
                 Id = x.Id,
-                Address = x.Address,
+                City = x.City,
+                Region = x.Region,
+                Building = x.Building,
+                Floor = x.Floor,
+                Street = x.Street,
                 Latitude = x.Latitude,
                 Longitude = x.Longitude,
             })

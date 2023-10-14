@@ -27,6 +27,9 @@ namespace Services
             foreach (var department in departments)
             {
                 var depWorkLoads = workLoadList.Where(x => x.DepartmentId == department.Id).OrderByDescending(x => x.LoggingDate).ToList();
+                if (depWorkLoads.Count == 0)
+                    continue;
+
                 var lastDepWorkLoad = depWorkLoads.FirstOrDefault();
 
                 var lastHourDepWorkload = depWorkLoads.Where(x => (today - x.LoggingDate).TotalHours <= 1).ToList();
@@ -34,7 +37,7 @@ namespace Services
                 var firstEntry = lastHourDepWorkload.First().Visitors;
                 var lastEnrty = lastHourDepWorkload.Last().Visitors;
 
-                var exitPerHours = firstEntry - lastEnrty;
+                var exitPerHours = firstEntry - lastEnrty > 0 ? firstEntry - lastEnrty : lastEnrty - firstEntry;
                 double exitPerMinute = exitPerHours / 60D;
 
                 double estimatedWaitingTime = 0D;
