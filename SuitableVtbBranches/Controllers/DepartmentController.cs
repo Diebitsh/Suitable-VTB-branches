@@ -1,5 +1,7 @@
-﻿using Contracts.Interfaces;
+﻿using Contracts.Filters;
+using Contracts.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace SuitableVtbBranches.Controllers
 {
@@ -23,9 +25,10 @@ namespace SuitableVtbBranches.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetList()
+        public async Task<IActionResult> GetList([FromQuery]string query)
         {
-            var result = await _departmentService.GetList();
+            var filter = Newtonsoft.Json.JsonConvert.DeserializeObject<DepartmentFilter>(query);
+            var result = await _departmentService.GetList(filter);
             return Ok(result);
         }
         
