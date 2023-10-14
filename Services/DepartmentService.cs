@@ -1,5 +1,6 @@
 ﻿using Context;
 using Contracts;
+using Contracts.Filters;
 using Contracts.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -45,7 +46,7 @@ namespace Services
             return dto;
         }
 
-        public async Task<List<DepartmentDto>> GetList()
+        public async Task<List<DepartmentDto>> GetList(DepartmentFilter filter)
         {
             var query = _context.Departments;
 

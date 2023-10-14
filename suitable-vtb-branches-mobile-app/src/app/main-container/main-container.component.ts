@@ -3,6 +3,8 @@ import { ModalController } from "@ionic/angular";
 import { DepartmentCardComponent } from "./department-card/department-card.component";
 import { DepartmentService } from "./services/department.service";
 import { DepartmentModel } from "./models/department.model";
+import { DepartmentFilter } from "./models/deparment-filter.model";
+import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
     selector: 'app-main-container',
@@ -15,8 +17,12 @@ export class MainContainerComponent implements OnInit {
     }
 
     departments: DepartmentModel[] = [];
+    filter: DepartmentFilter = new DepartmentFilter();
 
-    ngOnInit() {
+    async ngOnInit() {
+        let geoInfo = await Geolocation.getCurrentPosition();
+        this.filter.latitude = geoInfo.coords.latitude;
+        this.filter.longitude = geoInfo.coords.longitude;
         this.loadDepartments();
     }
 
@@ -32,7 +38,7 @@ export class MainContainerComponent implements OnInit {
     }
 
     loadDepartments() {
-        this.departmentService.getList().subscribe(x => {
+        this.departmentService.getList(this.filter).subscribe(x => {
             this.departments = x;
             console.log(this.departments)
         })
