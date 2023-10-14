@@ -45,17 +45,6 @@ export class MainContainerComponent implements OnInit {
         this.recentlyViews = await this.storage.get("recently_views") as RecentlyViewModel[];
     }
 
-    async openAtm() {
-        const modal = await this.modalCtrl.create({
-            component: AtmComponent,
-            breakpoints: [0, 0.3, 0.5, 0.8],
-            initialBreakpoint: 0.8,
-            cssClass: 'bottom-sheet',
-        })
-
-        await modal.present();
-    }
-
     loadDepartments() {
         this.departmentService.getList(this.deaprtmentFilter).subscribe(x => {
             this.departments = x;

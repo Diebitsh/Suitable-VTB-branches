@@ -1,1 +1,7 @@
-<span *ngFor="let item of recentlyViews">{{item.address}}</span>
+<swiper-container [slidesPerView]="1.2" [spaceBetween]="-20">
+    <swiper-slide *ngFor="let item of recentlyViews" (click)="openCard(item.id)">
+        <ion-card color="medium">
+            <ion-card-content>{{item.address}}</ion-card-content>
+        </ion-card>
+    </swiper-slide>
+</swiper-container>
