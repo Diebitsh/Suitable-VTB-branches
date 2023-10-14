@@ -11,6 +11,8 @@ export class DepartmentModel {
     metroStation: string;
     busStation: BusStation;
     services: Service[];
+    distance: number;
+    workloadPercent: number;
 }
 
 export class BusStation {

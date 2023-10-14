@@ -13,6 +13,7 @@ public class DepartmentDto: IEntityDto
     public double WorkloadPercent { get; set; }
     public int MaxVisitors { get; set; }
     public List<BankServiceDto> BankServicesDto { get; set; }
+    public double Distance { get; set; }
 }
 
 public class BusStation

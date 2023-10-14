@@ -2,9 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { DepartmentService } from "../services/department.service";
 import { ToastController } from "@ionic/angular";
 import { DepartmentModel } from "../models/department.model";
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
-
 @Component({
     selector: 'app-department-card',
     templateUrl: 'department-card.component.html',
@@ -14,13 +11,15 @@ export class DepartmentCardComponent implements OnInit {
 
     public departament: DepartmentModel;
 
-    constructor(private departmentService: DepartmentService, private toastController: ToastController) {}
+    constructor(
+        private departmentService: DepartmentService, 
+        private toastController: ToastController) {}
 
     id: string;
 
-    ngOnInit() {
-        this.departmentService.get(this.id).subscribe(x => {
-            this.departament = x;
+    async ngOnInit() {
+        this.departmentService.get(this.id).subscribe(dep => {
+            this.departament = dep;
         },
         async error => {
             console.log(error)
