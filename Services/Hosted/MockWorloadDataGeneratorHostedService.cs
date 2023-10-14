@@ -60,7 +60,7 @@ namespace Services.Hosted
                     {
                         Id = Guid.NewGuid(),
                         LoggingDate = now,
-                        Visitors = dep.LastWorkloadVisits > 5 ? rnd.Next(dep.LastWorkloadVisits - 5, dep.LastWorkloadVisits + 5) : rnd.Next(0, dep.MaxVisitors),
+                        Visitors = dep.LastWorkloadVisits > 5 ? rnd.Next(dep.LastWorkloadVisits - 7, dep.LastWorkloadVisits + 2) : rnd.Next(0, dep.MaxVisitors),
                         DepartmentId = dep.Id
                     });
                 }

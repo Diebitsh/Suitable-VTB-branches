@@ -48,7 +48,7 @@ public class DepartmentDto: IEntityDto
     /// <summary>
     /// предполагаемое время ождиания в минутках
     /// </summary>
-    public int EstimatedWaitingTime { get; set; }
+    public double EstimatedWaitingTime { get; set; }
 }
 
 public class BusStation
