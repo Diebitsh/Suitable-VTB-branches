@@ -18,9 +18,9 @@ namespace Services
         {
             var departmentsIds = departments.Select(x => x.Id);
 
-            var today = DateTime.Now.Date;
+            var today = DateTime.Now;
 
-            var workloadQuery = _context.Workloads.Where(x => departmentsIds.Contains(x.DepartmentId) && x.LoggingDate.Date == today);
+            var workloadQuery = _context.Workloads.Where(x => departmentsIds.Contains(x.DepartmentId) && x.LoggingDate.Date == today.Date);
 
             var workLoadList = await workloadQuery.ToListAsync();
 
@@ -29,8 +29,20 @@ namespace Services
                 var depWorkLoads = workLoadList.Where(x => x.DepartmentId == department.Id).OrderByDescending(x => x.LoggingDate).ToList();
                 var lastDepWorkLoad = depWorkLoads.FirstOrDefault();
 
+                var lastHourDepWorkload = depWorkLoads.Where(x => (today - x.LoggingDate).TotalHours <= 1).ToList();
+
+                var firstEntry = lastHourDepWorkload.First().Visitors;
+                var lastEnrty = lastHourDepWorkload.Last().Visitors;
+
+                var exitPerHours = firstEntry - lastEnrty;
+                double exitPerMinute = exitPerHours / 60D;
+
+                double estimatedWaitingTime = 0D;
+                if (exitPerHours < 0)
+                    estimatedWaitingTime = lastDepWorkLoad == null ? 0 : (lastDepWorkLoad.Visitors / Math.Abs(exitPerMinute));
 
                 department.WorkloadPercent = lastDepWorkLoad == null ? 0 : (lastDepWorkLoad.Visitors * 100) / department.MaxVisitors;
+                department.EstimatedWaitingTime = estimatedWaitingTime;
             }
         }
     }
